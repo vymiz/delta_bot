@@ -4,7 +4,6 @@ from read_file_func import *
 from tb import *
 from file_wrtite_func import *
 
-pause = 15
 err_counter = 0
 old_price = 0
 
@@ -37,8 +36,9 @@ while True:
     trade_pose = new_pose - old_pose
     old_pose = new_pose
 
-    print('call:%-3d  strike:%-6d  put:%-3d  price:%-6d' % (delta_call, strike_first, delta_put, price), end='  ')
-    print('pose:%-3d' % trade_pose)
+    if trade_pose != 0:
+        print('call:%-3d  strike:%-6d  put:%-3d  price:%-6d' % (delta_call, strike_first, delta_put, price), end='  ')
+        print('pose:%-3d' % trade_pose)
 
     f_write(trade_pose)
 
