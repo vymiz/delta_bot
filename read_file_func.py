@@ -1,6 +1,7 @@
 import openpyxl
 from addresses import *
 import time
+from vars import *
 
 
 def read():
@@ -22,9 +23,9 @@ def read():
 
     for d_c, s, d_p, p in cells:
         # print(f'{delta.value}, {strike.value}, {price.value}')
-        delta_call.append(int(d_c.value * 100))
+        delta_call.append(int(d_c.value * delta_pose))
         strike.append(s.value)
-        delta_put.append(int(d_p.value * 100))
+        delta_put.append(int(d_p.value * delta_pose))
         price = p.value
 
     return delta_call, strike, delta_put, price
