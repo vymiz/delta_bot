@@ -39,9 +39,7 @@ while True:
     if trade_pose != 0:
         print('call:%-3d  strike:%-6d  put:%-3d  price:%-6d' % (delta_call, strike_first, delta_put, price), end='  ')
         print('pose:%-3d' % trade_pose)
-
-    f_write(trade_pose)
-
+        f_write(trade_pose)
 
     time.sleep(pause)
 
