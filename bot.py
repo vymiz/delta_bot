@@ -11,7 +11,12 @@ delta_call, strike_first, delta_put, price = read()
 
 delta_call, strike, delta_put, price = get_strike(delta_call, strike_first, delta_put, price)
 
-old_pose = delta_call + delta_put
+# old_pose = delta_call + delta_put
+old_pose = 0
+print('Strike: ', strike)
+print('Delta Call : ', delta_call)
+print('Delta Put: ', delta_put)
+print('Start Pose: ', old_pose)
 
 while True:
 
@@ -40,7 +45,7 @@ while True:
     old_pose = new_pose
 
     if pose != 0:
-        print('call:%-3d  strike:%-6d  put:%-3d  price:%-6d' % (delta_call, strike_first, delta_put, price), end='  ')
+        print('call:%-3d  strike:%-6d  put:%-3d  price:%-6d' % (delta_call, strike, delta_put, price), end='  ')
         print('pose:%-3d' % pose)
         f_write(pose)
 
