@@ -9,7 +9,7 @@ old_price = 0
 
 delta_call, strike_first, delta_put, price = read()
 
-delta_call, strike_first, delta_put, price = get_strike(delta_call, strike_first, delta_put, price)
+delta_call, strike, delta_put, price = get_strike(delta_call, strike_first, delta_put, price)
 
 old_pose = delta_call + delta_put
 
@@ -27,21 +27,21 @@ while True:
         send()
 
     # получаем массивы данных
-    delta_call, strike_last, delta_put, price = read()
+    delta_call_array, strike_array, delta_put_array, price = read()
 
     # получаем единичные значения
-    delta_call, strike_last, delta_put, price = get_strike(delta_call, strike_last, delta_put, price)
+    # delta_call, strike_last, delta_put, price = get_strike(delta_call, strike_last, delta_put, price)
+    delta_call_dict, delta_put_dict = get_delta_by_strike(delta_call_array, strike_array, delta_put_array, price)
+    delta_call = delta_call_dict[strike]
+    delta_put = delta_put_dict[strike]
 
     new_pose = delta_call + delta_put
-    trade_pose = new_pose - old_pose
+    pose = new_pose - old_pose
     old_pose = new_pose
 
-    if trade_pose != 0:
+    if pose != 0:
         print('call:%-3d  strike:%-6d  put:%-3d  price:%-6d' % (delta_call, strike_first, delta_put, price), end='  ')
-        print('pose:%-3d' % trade_pose)
-        f_write(trade_pose)
+        print('pose:%-3d' % pose)
+        f_write(pose)
 
     time.sleep(pause)
-
-    # print('call:%-3d  strike:%-6d  put:%-3d  price:%-6d' % (delta_call, strike_first, delta_put, price), end='  ')
-    # print('pose:%-3d' % (delta_call + delta_put))
